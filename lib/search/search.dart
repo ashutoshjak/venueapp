@@ -57,7 +57,7 @@ class SearchVenue extends SearchDelegate {
         itemBuilder: (context, index) {
           return Card(
             child: ListTile(
-                title: Text("Book Name: ${suggestionList[index].venueName}"),
+                title: Text("Venue Name: ${suggestionList[index].venueName}"),
                 subtitle: Text(
                     "Author Name: ${suggestionList[index].district}"),
                 onTap: () {
@@ -66,7 +66,8 @@ class SearchVenue extends SearchDelegate {
                       new MaterialPageRoute(
                           builder: (context) =>
                               VenueDetailPage(suggestionList[index])));
-                }),
+                }
+                ),
           );
         });
   }

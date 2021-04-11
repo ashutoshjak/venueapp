@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
 
 //  String url = "http://10.0.2.2:8000/venues/?format=json";
 
-  String url = "http://192.168.1.69:8000/venues/?format=json";
+  String url = "http://192.168.1.69:8000/venues";
 
   Future<List<Venue>> fetchVenue() async {
     try {
@@ -122,6 +122,13 @@ class _HomePageState extends State<HomePage> {
                     child: ListTile(
                       title: Text("${venue[index].venueName}"),
                       subtitle: Text("${venue[index].address}"),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                  builder: (context) =>
+                                      VenueDetailPage(venue[index])));
+                        }
 
 
                     ),
