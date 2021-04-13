@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:venue/models/ipaddress.dart';
 import 'package:venue/pages/homepage.dart';
 import 'package:http/http.dart' as http;
 import 'package:venue/models/design.dart';
@@ -12,10 +13,11 @@ class InquiryForm extends StatefulWidget {
 class _InquiryFormState extends State<InquiryForm> {
 
 
-//  final _book_name = TextEditingController();
-//  final _author_name = TextEditingController();
-//  final _book_publication = TextEditingController();
-//  final _book_edition = TextEditingController();
+  final _venue_Name = TextEditingController();
+  final _address = TextEditingController();
+  final _district = TextEditingController();
+  final _contact = TextEditingController();
+  final _desctription = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -57,27 +59,32 @@ class _InquiryFormState extends State<InquiryForm> {
                     padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
                     child: Column(
                       children: <Widget>[
-                        SizedBox(height: 50.0),
+                        SizedBox(height: 20.0),
                         TextField(
-//                          controller: _book_name,
-                          decoration: textInputDecoration.copyWith(hintText: 'Form1'),
+                          controller: _venue_Name,
+                          decoration: textInputDecoration.copyWith(hintText: 'Venue Name'),
                         ),
-                        SizedBox(height: 30.0),
+                        SizedBox(height: 20.0),
                         TextField(
-//                          controller: _author_name,
-                          decoration: textInputDecoration.copyWith(hintText: 'Form2'),
+                          controller: _address,
+                          decoration: textInputDecoration.copyWith(hintText: 'Address'),
                         ),
-                        SizedBox(height: 30.0),
+                        SizedBox(height: 20.0),
                         TextField(
-//                          controller: _book_publication,
-                          decoration: textInputDecoration.copyWith(hintText: 'Form3'),
+                          controller: _district,
+                          decoration: textInputDecoration.copyWith(hintText: 'District'),
                         ),
-                        SizedBox(height: 30.0),
+                        SizedBox(height: 20.0),
                         TextField(
-//                          controller: _book_edition,
-                          decoration: textInputDecoration.copyWith(hintText: 'Form4'),
+                          controller: _contact,
+                          decoration: textInputDecoration.copyWith(hintText: 'Contact'),
                         ),
-                        SizedBox(height: 30.0),
+                        SizedBox(height: 20.0),
+                        TextField(
+                          controller: _desctription,
+                          decoration: textInputDecoration.copyWith(hintText: 'Description'),
+                        ),
+                        SizedBox(height: 20.0),
                         SizedBox(
                           width: 100.0,
                           height: 50.0,
@@ -105,16 +112,17 @@ class _InquiryFormState extends State<InquiryForm> {
   }
 
   void addData() async {
-    String url = "";
-//    String url = "http://${Server.ipAddress}/public/api/requestbook";
+//    String url = "";
+    String url = "http://${Server.ipAddress}/inquiry/";
     await http
         .post(url,
         headers: {'Accept': 'application/json'},
         body: ({
-//          "book_name": _book_name.text,
-//          "author_name": _author_name.text,
-//          "book_publication": _book_publication.text,
-//          "book_edition": _book_edition.text,
+          "venueName": _venue_Name.text,
+          "address": _address.text,
+          "district": _district.text,
+          "contact": _contact.text,
+          "description": _desctription.text,
         }))
         .then((response) {
       if (response.statusCode == 201) {
