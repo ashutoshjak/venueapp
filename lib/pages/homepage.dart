@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:venue/models/venue.dart';
+import 'package:venue/pages/inquiryform.dart';
 import 'dart:convert';
-
+import 'package:venue/pages/venuedisplay.dart';
 import 'package:venue/search/search.dart';
+import 'package:venue/models/ipaddress.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,9 +16,8 @@ class _HomePageState extends State<HomePage> {
 
   bool isLoading=false;
 
-//  String url = "http://10.0.2.2:8000/venues/?format=json";
-
-  String url = "http://192.168.1.69:8000/venues";
+//  String url = "http://192.168.1.69:8000/venues";
+  String url = "http://${Server.ipAddress}/venues";
 
   Future<List<Venue>> fetchVenue() async {
     try {
@@ -78,11 +79,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  Future<void> _getData() async {
-    setState(() {
-      fetchVenue();
-    });
-  }
 
 
 
@@ -90,54 +86,136 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          actions: <Widget>[
-            IconButton(icon: Icon(Icons.search),onPressed: (){
-
-              showSearch(context: context, delegate: SearchVenue(venue));
-
-            })
-          ],
-
+          automaticallyImplyLeading: false,
+          elevation: 0.0,
           title: Text('Venue',style: TextStyle(
-            fontSize: 25.0,fontFamily: "Ropa",
+            fontSize: 35.0,fontFamily: "Ropa",
           ),),
           centerTitle: true,
-          backgroundColor: Color(0XFFF59C16),
+          backgroundColor: Colors.red,
         ) ,
-        backgroundColor: Colors.white,
-        body: isLoading
-            ? Center(
-          child: CircularProgressIndicator(),
-        )
-            : RefreshIndicator(
-          onRefresh: _getData,
-          child: venue.isEmpty ? Center(child: Text("No venue found")) : ListView.builder (
-            itemCount: venue == null ? 0 : venue.length,
-            itemBuilder: (BuildContext context, index) {
-              return Column(
-                children: <Widget>[
-                  Card(
-                    elevation: 5,
-                    color: Colors.white,
-                    child: ListTile(
-                      title: Text("${venue[index].venueName}"),
-                      subtitle: Text("${venue[index].address}"),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              new MaterialPageRoute(
-                                  builder: (context) =>
-                                      VenueDetailPage(venue[index])));
-                        }
-
-
-                    ),
-                  ),
-                ],
-              );
-            },
+      backgroundColor: isLoading ? Colors.white : Colors.red,
+      body:  isLoading ?  Center(
+        child: CircularProgressIndicator(),
+      ):  Column(
+        children: <Widget>[
+          SizedBox(
+            height: 30,
           ),
-        )
+          Flexible(
+            child:  Card(
+              elevation: 5,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(40),
+                    topLeft: Radius.circular(40)
+                ),
+              ),
+
+              child: Container(
+                  padding: EdgeInsets.all(30.0),
+                  child: GridView.count(
+                    crossAxisCount: 2,
+                    children: <Widget>[
+
+                      Card(
+                        margin: EdgeInsets.all(8.0),
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)
+                        ),
+
+                        child: InkWell(
+                          onTap: () {
+                            showSearch(
+                                context: context, delegate: SearchVenue(venue));
+                          },
+                          child: Center(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                IconButton(
+                                    iconSize: 60,
+                                    alignment: Alignment.topCenter,
+                                    icon: Icon(Icons.search)),
+                                Text(
+                                  'Search',
+                                  style: new TextStyle(fontSize: 17.0),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Card(
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)
+                        ),
+
+                        margin: EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context)=>new VenuePage()));
+                          },
+                          child: Center(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                IconButton(
+                                    iconSize: 60,
+                                    alignment: Alignment.topCenter,
+                                    icon: Icon(
+                                        Icons.account_balance
+                                    )),
+                                Text(
+                                  'Venue List',
+                                  style: new TextStyle(fontSize: 17.0),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Card(
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)
+                        ),
+
+                        margin: EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context)=>new InquiryForm()));
+                          },
+                          child: Center(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                IconButton(
+                                    iconSize: 60,
+                                    alignment: Alignment.topCenter,
+                                    icon: Icon(
+                                        Icons.comment
+                                    )),
+                                Text(
+                                  'Inquiry Form',
+                                  style: new TextStyle(fontSize: 17.0),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+
+
+                    ],
+                  )
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
