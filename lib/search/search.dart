@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:venue/models/venue.dart';
 import 'package:http/http.dart' as http;
 import 'package:venue/pages/homepage.dart';
+import 'package:venue/pages/inquiryform.dart';
 
 class SearchVenue extends SearchDelegate {
   List<Venue> ven;
@@ -314,7 +315,39 @@ class VenueDetailPage extends StatelessWidget {
                         ),
                       ),
                     ),
+
                   ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Divider(
+                  height: 10,
+                  thickness: 1,
+                  color: Colors.grey,
+                ),
+
+                SizedBox(
+                  height: 10,
+                ),
+                Center(
+                  child: SizedBox(
+                    width: 150.0,
+                    height: 50.0,
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                      onPressed: (){
+                        Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context)=>new InquiryForm()));
+                      },
+                      color: Colors.red,
+                      child: Text(
+                        'Inquiry Form',
+                        style: TextStyle(color: Colors.white,fontSize: 18.0),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
