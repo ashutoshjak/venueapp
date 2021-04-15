@@ -257,6 +257,26 @@ class VenueDetailPage extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
+                Row(
+                  children: <Widget>[
+                    Text(
+                      "\t\t\tContact : ",
+                      style: TextStyle(
+                        fontSize: 19.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                        venu.contact.toString(),
+                      style: TextStyle(
+                        fontSize: 18.0,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
                 Text(
                   "\t\t\tDescription : ",
                   style: TextStyle(
