@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:venue/models/design.dart';
 import 'package:venue/models/venue.dart';
 import 'package:http/http.dart' as http;
 import 'package:venue/pages/homepage.dart';
@@ -130,14 +131,14 @@ class VenueDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.red,
+          backgroundColor: custom_color,
           centerTitle: true,
           title: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                "Venue Name:${venu.venueName}",
+                "Venue Detail",
                 style: TextStyle(fontFamily: "Ropa", fontSize: 25.0),
               ),
             ],
@@ -157,6 +158,28 @@ class VenueDetailPage extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 20,
+                ),
+                Row(
+                  children: <Widget>[
+                    Text(
+                      "\t\t\tName : ",
+                      style: TextStyle(
+                        fontSize: 19.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        venu.venueName,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 Row(
                   children: <Widget>[
@@ -341,14 +364,17 @@ class VenueDetailPage extends StatelessWidget {
                       onPressed: (){
                         Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context)=>new InquiryForm()));
                       },
-                      color: Colors.red,
+                      color: custom_color,
                       child: Text(
                         'Inquiry Form',
-                        style: TextStyle(color: Colors.white,fontSize: 18.0),
+                        style: TextStyle(color: Colors.white ,fontSize: 18.0),
                       ),
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 10,
+                )
               ],
             ),
           ),

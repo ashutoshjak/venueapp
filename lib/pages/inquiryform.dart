@@ -16,6 +16,7 @@ class _InquiryFormState extends State<InquiryForm> {
   final _venue_Name = TextEditingController();
   final _address = TextEditingController();
   final _district = TextEditingController();
+  final _email = TextEditingController();
   final _contact = TextEditingController();
   final _desctription = TextEditingController();
 
@@ -35,9 +36,9 @@ class _InquiryFormState extends State<InquiryForm> {
             fontSize: 25.0, fontFamily: "Ropa",
           ),),
           centerTitle: true,
-          backgroundColor: Colors.red,
+          backgroundColor: custom_color,
         ),
-        backgroundColor: Colors.red,
+        backgroundColor: custom_color,
         body: Column(
           children: <Widget>[
             SizedBox(
@@ -55,7 +56,6 @@ class _InquiryFormState extends State<InquiryForm> {
 
                 child: SingleChildScrollView(
                   child: Container(
-                    height: MediaQuery.of(context).size.height*0.9,
                     padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
                     child: Column(
                       children: <Widget>[
@@ -76,6 +76,11 @@ class _InquiryFormState extends State<InquiryForm> {
                         ),
                         SizedBox(height: 20.0),
                         TextField(
+                          controller: _email,
+                          decoration: textInputDecoration.copyWith(hintText: 'Email'),
+                        ),
+                        SizedBox(height: 20.0),
+                        TextField(
                           controller: _contact,
                           decoration: textInputDecoration.copyWith(hintText: 'Contact'),
                         ),
@@ -93,7 +98,7 @@ class _InquiryFormState extends State<InquiryForm> {
                               borderRadius: BorderRadius.circular(50.0),
                             ),
                             onPressed: addData,
-                            color: Colors.red,
+                            color: custom_color,
                             child: Text(
                               'Submit',
                               style: TextStyle(color: Colors.white,fontSize: 18.0),
@@ -121,6 +126,7 @@ class _InquiryFormState extends State<InquiryForm> {
           "venueName": _venue_Name.text,
           "address": _address.text,
           "district": _district.text,
+          "email": _email.text,
           "contact": _contact.text,
           "description": _desctription.text,
         }))

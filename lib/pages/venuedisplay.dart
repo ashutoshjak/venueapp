@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:venue/models/design.dart';
 import 'package:venue/models/ipaddress.dart';
 import 'package:venue/models/venue.dart';
 import 'package:venue/pages/homepage.dart';
@@ -101,7 +102,7 @@ class _VenuePageState extends State<VenuePage> {
             ),
           ),
           centerTitle: true,
-          backgroundColor: Colors.red,
+          backgroundColor: custom_color,
         ),
         backgroundColor: Colors.white,
         body: isLoading

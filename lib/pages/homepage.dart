@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:venue/models/design.dart';
 import 'package:venue/models/venue.dart';
 import 'package:venue/pages/inquiryform.dart';
 import 'dart:convert';
@@ -92,9 +93,9 @@ class _HomePageState extends State<HomePage> {
             fontSize: 35.0,fontFamily: "Ropa",
           ),),
           centerTitle: true,
-          backgroundColor: Colors.red,
+          backgroundColor: custom_color
         ) ,
-      backgroundColor: isLoading ? Colors.white : Colors.red,
+      backgroundColor: isLoading ? Colors.white : custom_color,
       body:  isLoading ?  Center(
         child: CircularProgressIndicator(),
       ):  Column(
