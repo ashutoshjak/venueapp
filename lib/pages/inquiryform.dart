@@ -6,19 +6,22 @@ import 'package:venue/models/design.dart';
 
 
 class InquiryForm extends StatefulWidget {
+
+
   @override
   _InquiryFormState createState() => _InquiryFormState();
 }
 
 class _InquiryFormState extends State<InquiryForm> {
 
+  //user_name email contact venue_name request_description
 
-  final _venue_Name = TextEditingController();
-  final _address = TextEditingController();
-  final _district = TextEditingController();
+
+  final _user_name = TextEditingController();
   final _email = TextEditingController();
   final _contact = TextEditingController();
-  final _desctription = TextEditingController();
+  final _venue_name = TextEditingController();
+  final _request_description = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +47,7 @@ class _InquiryFormState extends State<InquiryForm> {
             SizedBox(
               height: 30,
             ),
-            Flexible(
+            Expanded(
               child: Card(
                 elevation: 5,
                 shape: RoundedRectangleBorder(
@@ -61,18 +64,9 @@ class _InquiryFormState extends State<InquiryForm> {
                       children: <Widget>[
                         SizedBox(height: 20.0),
                         TextField(
-                          controller: _venue_Name,
-                          decoration: textInputDecoration.copyWith(hintText: 'Venue Name'),
-                        ),
-                        SizedBox(height: 20.0),
-                        TextField(
-                          controller: _address,
-                          decoration: textInputDecoration.copyWith(hintText: 'Address'),
-                        ),
-                        SizedBox(height: 20.0),
-                        TextField(
-                          controller: _district,
-                          decoration: textInputDecoration.copyWith(hintText: 'District'),
+
+                          controller: _user_name,
+                          decoration: textInputDecoration.copyWith(hintText: 'User Name' ),
                         ),
                         SizedBox(height: 20.0),
                         TextField(
@@ -86,7 +80,12 @@ class _InquiryFormState extends State<InquiryForm> {
                         ),
                         SizedBox(height: 20.0),
                         TextField(
-                          controller: _desctription,
+                          controller: _venue_name,
+                          decoration: textInputDecoration.copyWith(hintText: 'Venu Name'),
+                        ),
+                        SizedBox(height: 20.0),
+                        TextField(
+                          controller: _request_description,
                           decoration: textInputDecoration.copyWith(hintText: 'Description'),
                         ),
                         SizedBox(height: 20.0),
@@ -123,12 +122,11 @@ class _InquiryFormState extends State<InquiryForm> {
         .post(url,
         headers: {'Accept': 'application/json'},
         body: ({
-          "venueName": _venue_Name.text,
-          "address": _address.text,
-          "district": _district.text,
+          "user_name": _user_name.text,
           "email": _email.text,
           "contact": _contact.text,
-          "description": _desctription.text,
+          "venue_name": _venue_name.text,
+          "request_description": _request_description.text,
         }))
         .then((response) {
       if (response.statusCode == 201) {

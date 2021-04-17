@@ -126,6 +126,7 @@ class VenueDetailPage extends StatelessWidget {
   final Venue venu;
 
   VenueDetailPage(this.venu);
+  String name, district, address;
 
   @override
   Widget build(BuildContext context) {
