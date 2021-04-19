@@ -158,197 +158,215 @@ class VenueDetailPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 1,
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 5,
                 ),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      "\t\t\tName : ",
-                      style: TextStyle(
-                        fontSize: 19.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        venu.venueName,
-                        style: TextStyle(
-                          fontSize: 18.0,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+               Card(
+                 elevation: 5.0,
+                 color: Colors.white70,
+                 child: Padding(
+                   padding: const EdgeInsets.all(20.0),
+                   child: Column(
+                     children: <Widget>[
+                       Row(
+                         children: <Widget>[
+                           Text(
+                             "\t\t\tVenue Name : ",
+                             style: TextStyle(
+                               fontSize: 19.0,
+                               fontWeight: FontWeight.bold,
+                             ),
+                           ),
+                           Expanded(
+                             child: Text(
+                               venu.venueName,
+                               style: TextStyle(
+                                 fontSize: 18.0,
+                               ),
+                             ),
+                           ),
+                         ],
+                       ),
+                       SizedBox(
+                         height: 10,
+                       ),
+//                       Row(
+//                         children: <Widget>[
+//                           Text(
+//                             "\t\t\tDistrict : ",
+//                             style: TextStyle(
+//                               fontSize: 19.0,
+//                               fontWeight: FontWeight.bold,
+//                             ),
+//                           ),
+//                           Text(
+//                             venu.district,
+//                             style: TextStyle(
+//                               fontSize: 18.0,
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                       SizedBox(
+//                         height: 10,
+//                       ),
+                       Row(
+                         children: <Widget>[
+                           Text(
+                             "\t\t\tAddress : ",
+                             style: TextStyle(
+                               fontSize: 19.0,
+                               fontWeight: FontWeight.bold,
+                             ),
+                           ),
+                           Text(
+                             venu.address,
+                             style: TextStyle(
+                               fontSize: 18.0,
+                             ),
+                           ),
+                         ],
+                       ),
+//                       SizedBox(
+//                         height: 10,
+//                       ),
+//                       Row(
+//                         children: <Widget>[
+//                           Text(
+//                             "\t\t\tOpening Time : ",
+//                             style: TextStyle(
+//                               fontSize: 19.0,
+//                               fontWeight: FontWeight.bold,
+//                             ),
+//                           ),
+//                           Text(
+//                             venu.openTime.toString(),
+//                             style: TextStyle(
+//                               fontSize: 18.0,
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                       SizedBox(
+//                         height: 10,
+//                       ),
+//                       Row(
+//                         children: <Widget>[
+//                           Text(
+//                             "\t\t\tClosing Time : ",
+//                             style: TextStyle(
+//                               fontSize: 19.0,
+//                               fontWeight: FontWeight.bold,
+//                             ),
+//                           ),
+//                           Text(
+//                             venu.closingTime.toString(),
+//                             style: TextStyle(
+//                               fontSize: 18.0,
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                       SizedBox(
+//                         height: 10,
+//                       ),
+//                       Row(
+//                         children: <Widget>[
+//                           Text(
+//                             "\t\t\tPrice : ",
+//                             style: TextStyle(
+//                               fontSize: 19.0,
+//                               fontWeight: FontWeight.bold,
+//                             ),
+//                           ),
+//                           Text("NRs" + "\t" +
+//                               venu.price.toString(),
+//                             style: TextStyle(
+//                               fontSize: 18.0,
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+                       SizedBox(
+                         height: 10,
+                       ),
+                       Row(
+                         children: <Widget>[
+                           Text(
+                             "\t\t\tContact : ",
+                             style: TextStyle(
+                               fontSize: 19.0,
+                               fontWeight: FontWeight.bold,
+                             ),
+                           ),
+                           Text(
+                             venu.contact.toString(),
+                             style: TextStyle(
+                               fontSize: 18.0,
+                             ),
+                           ),
+                         ],
+                       ),
+                     ],
+                   ),
+                 ),
+               ),
                 SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      "\t\t\tDistrict : ",
-                      style: TextStyle(
-                        fontSize: 19.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+                Card(
+                  elevation: 5.0,
+                  color: Colors.white70,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                     children: <Widget>[
+                       Text(
+                         "\t\t\tDescription : ",
+                         style: TextStyle(
+                           fontSize: 19.0,
+                           fontWeight: FontWeight.bold,
+                         ),
+                       ),
+                       SizedBox(
+                         height: 8,
+                       ),
+                       Padding(
+                         padding: const EdgeInsets.only(left: 40),
+                         child: Text(
+                           venu.description,
+                           style: TextStyle(fontSize: 18.0),
+                         ),
+                       ),
+                     ],
                     ),
-                    Text(
-                      venu.district,
-                      style: TextStyle(
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      "\t\t\tAddress : ",
-                      style: TextStyle(
-                        fontSize: 19.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      venu.address,
-                      style: TextStyle(
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      "\t\t\tOpening Time : ",
-                      style: TextStyle(
-                        fontSize: 19.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      venu.openTime.toString(),
-                      style: TextStyle(
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      "\t\t\tClosing Time : ",
-                      style: TextStyle(
-                        fontSize: 19.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      venu.closingTime.toString(),
-                      style: TextStyle(
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      "\t\t\tPrice : ",
-                      style: TextStyle(
-                        fontSize: 19.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text("NRs" + "\t" +
-                      venu.price.toString(),
-                      style: TextStyle(
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      "\t\t\tContact : ",
-                      style: TextStyle(
-                        fontSize: 19.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                        venu.contact.toString(),
-                      style: TextStyle(
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "\t\t\tDescription : ",
-                  style: TextStyle(
-                    fontSize: 19.0,
-                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 40),
-                  child: Text(
-                    venu.description,
-                    style: TextStyle(fontSize: 18.0),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      "\t\t\tWebsite : ",
-                      style: TextStyle(
-                        fontSize: 19.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        venu.website.toString(),
-                        style: TextStyle(
-                          fontSize: 18.0,
-                        ),
-                      ),
-                    ),
-
-                  ],
-                ),
+//                SizedBox(
+//                  height: 10,
+//                ),
+//                Row(
+//                  children: <Widget>[
+//                    Text(
+//                      "\t\t\tWebsite : ",
+//                      style: TextStyle(
+//                        fontSize: 19.0,
+//                        fontWeight: FontWeight.bold,
+//                      ),
+//                    ),
+//                    Expanded(
+//                      child: Text(
+//                        venu.website.toString(),
+//                        style: TextStyle(
+//                          fontSize: 18.0,
+//                        ),
+//                      ),
+//                    ),
+//
+//                  ],
+//                ),
                 SizedBox(
                   height: 20,
-                ),
-                Divider(
-                  height: 10,
-                  thickness: 1,
-                  color: Colors.grey,
                 ),
 
                 SizedBox(
@@ -356,7 +374,7 @@ class VenueDetailPage extends StatelessWidget {
                 ),
                 Center(
                   child: SizedBox(
-                    width: 150.0,
+                    width: 250.0,
                     height: 50.0,
                     child: RaisedButton(
                       shape: RoundedRectangleBorder(

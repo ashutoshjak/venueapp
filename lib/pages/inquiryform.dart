@@ -52,8 +52,8 @@ class _InquiryFormState extends State<InquiryForm> {
                 elevation: 5,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(40),
-                      topLeft: Radius.circular(40)
+                      topRight: Radius.circular(0),
+                      topLeft: Radius.circular(0)
                   ),
                 ),
 

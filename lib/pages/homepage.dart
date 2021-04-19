@@ -80,7 +80,11 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-
+  Future<void> _getData() async {
+    setState(() {
+      fetchVenue();
+    });
+  }
 
 
   @override
@@ -89,134 +93,107 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           elevation: 0.0,
-          title: Text('Venue',style: TextStyle(
-            fontSize: 35.0,fontFamily: "Ropa",
-          ),),
-          centerTitle: true,
-          backgroundColor: custom_color
-        ) ,
-      backgroundColor: isLoading ? Colors.white : custom_color,
-      body:  isLoading ?  Center(
-        child: CircularProgressIndicator(),
-      ):  Column(
-        children: <Widget>[
-          SizedBox(
-            height: 30,
+          title: Padding(
+            padding: const EdgeInsets.only(top:20.0),
+            child: Text('VenueCate',style: TextStyle(
+              fontSize: 35.0,fontFamily: "Ropa",
+            ),),
           ),
-          Flexible(
-            child:  Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(40),
-                    topLeft: Radius.circular(40)
+          centerTitle: true,
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(120),
+            child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: InkWell(
+              onTap: () {
+                showSearch(
+                    context: context, delegate: SearchVenue(venue));
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 25.0),
+                child: Card(
+                  child: Row(
+                    children: <Widget>[
+//              SizedBox(height: 100,),
+                      Row(
+                        children: <Widget>[
+                          InkWell(
+                            child: IconButton(
+                              icon: Icon(Icons.search),
+                            ),
+                          ),
+                            Text('Search',
+                                textAlign: TextAlign.center),
+
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
+            ),)
+          ),
+          backgroundColor: custom_color
+        ) ,
+      backgroundColor: isLoading ? Colors.white : Colors.white,
+      body:  isLoading ?  Center(
+        child: CircularProgressIndicator(),
+      ):  RefreshIndicator(
+      onRefresh: _getData,
+      child: venue.isEmpty
+          ? Center(child: Text("No venue found"))
+          : GridView.builder(
+        itemCount: venue == null ? 0 : venue.length,
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 400,
+            childAspectRatio: 1,
+            crossAxisSpacing: 0,
+            mainAxisSpacing: 0),
+        itemBuilder: (BuildContext context, index) {
+          return Column(children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) =>
+                            VenueDetailPage(venue[index])));
+              },
+              child: Card(
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: 335,
+                      height: 110,
+                      child: Image.network(
+                        venue[index].image,
 
-              child: Container(
-                  padding: EdgeInsets.all(30.0),
-                  child: GridView.count(
-                    crossAxisCount: 2,
-                    children: <Widget>[
-
-                      Card(
-                        margin: EdgeInsets.all(8.0),
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30)
-                        ),
-
-                        child: InkWell(
-                          onTap: () {
-                            showSearch(
-                                context: context, delegate: SearchVenue(venue));
-                          },
-                          child: Center(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                IconButton(
-                                    iconSize: 60,
-                                    alignment: Alignment.topCenter,
-                                    icon: Icon(Icons.search)),
-                                Text(
-                                  'Search',
-                                  style: new TextStyle(fontSize: 17.0),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
+                        fit: BoxFit.fill,
                       ),
-                      Card(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30)
-                        ),
+                    ),
+                    SizedBox(height: 16,),
+                    Column(children:[
+                      Text('Venue Name : ' + venue[index].venueName),
+                      SizedBox(height: 10,),
+                      Text('Address : ' + venue[index].address),
+                      SizedBox(height: 10,),
+                    ])
 
-                        margin: EdgeInsets.all(8.0),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context)=>new VenuePage()));
-                          },
-                          child: Center(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                IconButton(
-                                    iconSize: 60,
-                                    alignment: Alignment.topCenter,
-                                    icon: Icon(
-                                        Icons.account_balance
-                                    )),
-                                Text(
-                                  'Venue List',
-                                  style: new TextStyle(fontSize: 17.0),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Card(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30)
-                        ),
-
-                        margin: EdgeInsets.all(8.0),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context)=>new InquiryForm()));
-                          },
-                          child: Center(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                IconButton(
-                                    iconSize: 60,
-                                    alignment: Alignment.topCenter,
-                                    icon: Icon(
-                                        Icons.comment
-                                    )),
-                                Text(
-                                  'Inquiry Form',
-                                  style: new TextStyle(fontSize: 17.0),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-
-
-                    ],
-                  )
+                  ],
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                elevation: 5,
+                margin: EdgeInsets.all(10),
               ),
             ),
-          ),
-        ],
+          ]);
+        },
       ),
+    )
+
     );
   }
 }
